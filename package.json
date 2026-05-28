@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "method-override": "^3.0.0",
+    "node": "^24.16.0",
+    "nodemon": "^3.1.14"
+  },
+  "name": "hostelconnect",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ishaak07/HostelConnect.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ishaak07/HostelConnect/issues"
+  },
+  "homepage": "https://github.com/ishaak07/HostelConnect#readme"
+}
