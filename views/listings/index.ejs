@@ -1,6 +1,7 @@
-<h1>View All Posts</h1>
 <% for(let listing of allListings){ %>
-    <h3><%= listing.title %></h3>
+    <h3>
+        <a href="/listings/<%= listing._id %>"><%= listing.title %></a>
+    </h3>
     <p><%= listing.description %></p>
     <hr>
 <% } %>

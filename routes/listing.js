@@ -7,10 +7,13 @@ const listingController = require("../controllers/listings.js");
 //INDEX ROUTE
 router.get("/", listingController.index);
 
-// NEW FORM ROUTE
+//NEW FORM ROUTE
 router.get("/new", isLoggedIn, listingController.renderNewForm);
 
 //CREATE ROUTE
 router.post("/", isLoggedIn, listingController.createListing);
+
+//ye detailed view
+router.get("/:id", listingController.showListing);
 
 module.exports = router;
