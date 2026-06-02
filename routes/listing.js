@@ -16,4 +16,5 @@ router.post("/", isLoggedIn, listingController.createListing);
 //ye detailed view
 router.get("/:id", listingController.showListing);
 
+router.get("/:id/edit", listingController.renderEditForm);
 module.exports = router;

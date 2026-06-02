@@ -1,0 +1,12 @@
+<h1>Edit Post</h1>
+<form action="/listings/<%= listing._id %>?_method=PUT" method="POST">
+    <label>Title</label>
+    <br>
+    <input type="text"name="listing[title]"value="<%= listing.title %>"required>
+    <br><br>
+    <label>Description</label>
+    <br>
+    <textarea name="listing[description]"rows="5"cols="40"><%= listing.description %></textarea>
+    <br><br>
+    <button>Update Post</button>
+</form>
