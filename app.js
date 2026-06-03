@@ -3,6 +3,9 @@ const express=require("express");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+const methodOverride = require("method-override");
+
+
 const app=express();
 const port=8080;
 const path=require("path");
@@ -10,6 +13,7 @@ app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"/views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
 
 const User = require("./models/user.js");
 const userRoutes = require("./routes/user.js");
