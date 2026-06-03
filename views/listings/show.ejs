@@ -2,4 +2,19 @@
 <p><%= listing.description %></p>
 <p>Hostel Block: <%= listing.hostelBlock %></p>
 <p>Posted On: <%= listing.createdAt %></p>
-<a href="/listings/<%= listing._id %>/edit">Edit</a>
+<!-- <a href="/listings/<%= listing._id %>/edit">Edit</a>
+<form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
+    <button>Delete Post</button>
+</form> -->
+
+<% if(currUser && listing.owner.equals(currUser._id)){ %>
+
+    <a href="/listings/<%= listing._id %>/edit">
+        Edit
+    </a>
+
+    <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
+        <button>Delete</button>
+    </form>
+
+<% } %>

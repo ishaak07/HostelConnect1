@@ -34,8 +34,12 @@ module.exports.renderEditForm = async (req, res) => {
 
 module.exports.updateListing = async (req, res) => {
     let { id } = req.params;
-
     await Listing.findByIdAndUpdate(id, req.body.listing);
-
     res.redirect(`/listings/${id}`);
+};
+
+module.exports.deleteListing = async (req, res) => {
+    let { id } = req.params;
+    await Listing.findByIdAndDelete(id);
+    res.redirect("/listings");
 };
