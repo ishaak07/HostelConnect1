@@ -1,6 +1,58 @@
-<h1>Login</h1>
-<form action="/users/login" method="POST">
-    <input type="text" name="username" placeholder="username">
-    <input type="password" name="password" placeholder="password">
-    <button>Login</button>
-</form>
+<% layout("/layouts/boilerplate") %>
+<div class="auth-wrapper">
+    <div class="auth-card">
+
+        <div class="auth-header">
+            <h2 class="auth-title">Welcome Back</h2>
+            <p class="auth-subtitle">Login to HostelConnect</p>
+        </div>
+
+        <form action="/users/login" method="POST" class="auth-form needs-validation" novalidate>
+
+            <!-- Registration No -->
+            <div class="mb-3">
+                <label for="registrationNo" class="form-label">Registration No</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-id-card"></i></span>
+                    <input
+                        type="text"
+                        id="registrationNo"
+                        name="registrationNo"
+                        class="form-control"
+                        placeholder="e.g. 23BCE1111"
+                        required
+                    >
+                    <div class="invalid-feedback">Please enter your registration number.</div>
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-4">
+                <label for="password" class="form-label">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        class="form-control"
+                        placeholder="Enter your password"
+                        required
+                    >
+                    <button class="btn btn-outline-secondary toggle-password" type="button">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                    <div class="invalid-feedback">Please enter your password.</div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn auth-btn w-100">Login</button>
+
+        </form>
+
+        <div class="auth-footer">
+            <p>Don't have an account? <a href="/users/signup">Sign up here</a></p>
+        </div>
+
+    </div>
+</div>

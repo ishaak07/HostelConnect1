@@ -1,0 +1,14 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="error-wrapper">
+    <div class="error-card">
+        <div class="error-icon">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <h2 class="error-title">Oops!</h2>
+        <p class="error-msg"><%= err.message || "Something went wrong!" %></p>
+        <a href="/listings" class="btn auth-btn">
+            <i class="fa-solid fa-arrow-left"></i> Go Back
+        </a>
+    </div>
+</div>

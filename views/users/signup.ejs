@@ -1,15 +1,140 @@
-<h1>Signup</h1>
+<% layout("/layouts/boilerplate") %>
+<div class="auth-wrapper">
+    <div class="auth-card">
 
-<form action="/users/signup" method="POST">
+        <div class="auth-header">
+            <h2 class="auth-title">Create Account</h2>
+            <p class="auth-subtitle">Your hostel laundry helper</p>
+        </div>
 
-    <input type="text" name="username" placeholder="username">
+        <form action="/users/signup" method="POST" class="auth-form needs-validation" novalidate>
 
-    <input type="email" name="email" placeholder="email">
+            <!-- Name -->
+            <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        class="form-control"
+                        placeholder="e.g. Aman Kumar"
+                        required
+                    >
+                    <div class="invalid-feedback">Please enter your full name.</div>
+                </div>
+            </div>
 
-    <input type="text" name="hostelBlock" placeholder="Hostel Block">
+            <!-- Registration No -->
+            <div class="mb-3">
+                <label for="registrationNo" class="form-label">Registration No</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-id-card"></i></span>
+                    <input
+                        type="text"
+                        id="registrationNo"
+                        name="registrationNo"
+                        class="form-control"
+                        placeholder="e.g. 23BCE1111"
+                        required
+                    >
+                    <div class="invalid-feedback">Please enter your registration number.</div>
+                </div>
+            </div>
 
-    <input type="password" name="password" placeholder="password">
+            <!-- Email -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        class="form-control"
+                       
+                        required
+                    >
+                    <div class="invalid-feedback">Please enter a valid email.</div>
+                </div>
+            </div>
 
-    <button>Signup</button>
+            <!-- Hostel Block + Room No -->
+            <div class="row mb-3">
+                <div class="col-7">
+                    <label for="hostelBlock" class="form-label">Hostel Block</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fa-solid fa-building"></i></span>
+                        <select id="hostelBlock" name="hostelBlock" class="form-select" required>
+                            <option value="" disabled selected>Select</option>
+                            <optgroup label="Ladies Hostel">
+                                <option value="LH1">LH1</option>
+                                <option value="LH2">LH2</option>
+                                <option value="LH3">LH3</option>
+                                <option value="LH4">LH4</option>
+                                
+                            </optgroup>
+                            <optgroup label="Men's Hostel">
+                                <option value="MH1">MH1</option>
+                                <option value="MH2">MH2</option>
+                                <option value="MH3">MH3</option>
+                                <option value="MH4">MH4</option>
+                                <option value="MH5">MH5</option>
+                                <option value="MH6">MH6</option>
+                                <option value="MH7">MH7</option>
+                                <option value="MH8">MH8</option>
+                             
+                            </optgroup>
+                        </select>
+                        <div class="invalid-feedback">Please select your hostel block.</div>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <label for="roomNo" class="form-label">Room No</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fa-solid fa-door-open"></i></span>
+                        <input
+                            type="text"
+                            id="roomNo"
+                            name="roomNo"
+                            class="form-control"
+                            
+                            required
+                        >
+                        <div class="invalid-feedback">Please enter your room number.</div>
+                    </div>
+                </div>
+            </div>
 
-</form>
+            <!-- Password -->
+            <div class="mb-4">
+                <label for="password" class="form-label">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        class="form-control"
+                        placeholder="Min 6 characters"
+                        minlength="6"
+                        required
+                    >
+                    <button class="btn btn-outline-secondary toggle-password" type="button">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                    <div class="invalid-feedback">Password must be at least 6 characters.</div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn auth-btn w-100">Create Account</button>
+
+        </form>
+
+        <div class="auth-footer">
+            <p>Already have an account? <a href="/users/login">Login here</a></p>
+        </div>
+
+    </div>
+</div>

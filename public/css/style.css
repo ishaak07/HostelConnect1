@@ -1,0 +1,636 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    background-color: #f8f5f1;
+    color: #2f2f2f;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* MAIN CONTENT */
+
+main.container {
+    flex: 1;
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+/* ================= NAVBAR ================= */
+
+/* .custom-navbar{
+    background-color: #fffdfb !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+    min-height: 30px;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+} */
+
+/* Logo */
+
+.brand-logo {
+    font-family: "Dancing Script", cursive;
+    font-size: 2.5rem;
+    font-weight: 700;
+
+    color: #7b4f3d !important;
+
+    text-decoration: none;
+}
+
+.brand-logo:hover {
+    color: #a06a55 !important;
+}
+
+/* Search */
+
+.search-form {
+    max-width: 280px;
+    width: 100%;
+}
+
+.search-form input {
+    border-radius: 30px;
+    padding: 0.6rem 1rem;
+
+    border: 1px solid #d8cfc8;
+}
+
+.search-form input:focus {
+    border-color: #8b5e3c;
+    box-shadow: none;
+}
+
+/* Search Button */
+
+.search-btn {
+    border: none;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    background-color: #8b5e3c;
+    color: white;
+}
+
+.search-btn:hover {
+    background-color: #6f4930;
+    color: white;
+}
+
+/* Navbar Links */
+
+.nav-btn {
+    font-weight: 600;
+    color: #5c4033 !important;
+}
+
+.nav-btn:hover {
+    color: #8b5e3c !important;
+}
+
+
+
+.footer {
+    margin-top: auto;
+
+    background-color: #fffdfb;
+
+    text-align: center;
+
+    padding: 20px;
+
+    color: #666;
+
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.footer p {
+    margin-bottom: 2px;
+}
+
+.footer p:last-child {
+    margin-bottom: 0;
+}
+
+
+@media (max-width: 768px) {
+    .brand-logo {
+        font-size: 2rem;
+    }
+    .search-form {
+        margin: 15px 0;
+    }
+    main.container {
+        width: 95%;
+    }
+}
+
+/* ================= AUTH PAGES ================= */
+
+.auth-wrapper {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-card {
+    background-color: #fffdfb;
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 460px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-title {
+    font-family: "Dancing Script", cursive;
+    font-size: 2.2rem;
+    color: #7b4f3d;
+    margin-bottom: 0.3rem;
+}
+
+.auth-subtitle {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* Input Groups */
+
+.auth-form .input-group-text {
+    background-color: #f3ece6;
+    border: 1px solid #d8cfc8;
+    color: #8b5e3c;
+}
+
+.auth-form .form-control {
+    border: 1px solid #d8cfc8;
+}
+
+.auth-form .form-control:focus {
+    border-color: #8b5e3c;
+    box-shadow: none;
+}
+
+.auth-form .form-label {
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: #5c4033;
+}
+.auth-form .form-select {
+    border: 1px solid #d8cfc8;
+    color: #2f2f2f;
+}
+
+.auth-form .form-select:focus {
+    border-color: #8b5e3c;
+    box-shadow: none;
+}
+/* Submit Button */
+
+.auth-btn {
+    background-color: #8b5e3c;
+    color: white;
+    font-weight: 600;
+    border-radius: 30px;
+    padding: 0.65rem;
+    border: none;
+    transition: background-color 0.2s;
+}
+
+.auth-btn:hover {
+    background-color: #6f4930;
+    color: white;
+}
+
+/* Footer Link */
+
+.auth-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.auth-footer a {
+    color: #8b5e3c;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-footer a:hover {
+    color: #6f4930;
+    text-decoration: underline;
+}
+.toggle-password {
+    border: 1px solid #d8cfc8;
+    background-color: #f3ece6;
+    color: #8b5e3c;
+}
+
+.toggle-password:hover {
+    background-color: #e8ddd6;
+    color: #6f4930;
+}
+.main-content {
+    flex: 1;
+}
+
+.flash-msg {
+    margin-top: 1rem;
+    border-radius: 10px;
+    max-width: 500px; 
+    font-weight: 500;
+    text-align: center;
+}
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    border-radius: 10px;
+    font-weight: 500;
+}
+/* ================= LISTINGS INDEX ================= */
+
+.listings-header {
+    margin-bottom: 2rem;
+}
+
+.page-title {
+    font-family: "Dancing Script", cursive;
+    font-size: 2.4rem;
+    color: #7b4f3d;
+}
+
+.page-subtitle {
+    color: #888;
+    font-size: 0.95rem;
+}
+
+.listings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.listing-card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.listing-card {
+    background-color: #fffdfb;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.listing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.listing-img-wrapper {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background-color: #f3ece6;
+}
+
+.listing-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.listing-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c9bbb0;
+    font-size: 2.5rem;
+}
+
+.listing-card-body {
+    padding: 0.9rem 1rem;
+}
+
+.listing-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #5c4033;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Empty State */
+
+.empty-state {
+    text-align: center;
+    padding: 4rem 1rem;
+    color: #999;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #d8cfc8;
+}
+
+.empty-state p {
+    margin-bottom: 1.2rem;
+}
+
+/* Floating Add Button */
+
+.fab-add {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #8b5e3c;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+    text-decoration: none;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.fab-add:hover {
+    background-color: #6f4930;
+    color: white;
+    transform: scale(1.08);
+}
+
+/* ================= LISTING SHOW PAGE ================= */
+
+.show-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: #8b5e3c;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.back-link:hover {
+    color: #6f4930;
+}
+
+.show-card {
+    background-color: #fffdfb;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+.show-img-wrapper {
+    width: 100%;
+    height: 320px;
+    background-color: #f3ece6;
+}
+
+.show-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.show-img-placeholder {
+    font-size: 4rem;
+}
+
+.show-content {
+    padding: 1.8rem;
+}
+
+.show-title {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #1a1a1a;
+    margin-bottom: 0.8rem;
+}
+
+.show-description {
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.show-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ecdfd6;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    color: #5c4033;
+    background-color: #f3ece6;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+}
+
+.meta-item i {
+    color: #8b5e3c;
+}
+
+.show-actions {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.edit-btn {
+    background-color: #8b5e3c;
+    color: white;
+    border-radius: 30px;
+    padding: 0.5rem 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.edit-btn:hover {
+    background-color: #6f4930;
+    color: white;
+}
+
+.delete-btn {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: none;
+    border-radius: 30px;
+    padding: 0.5rem 1.2rem;
+    font-weight: 600;
+}
+
+.delete-btn:hover {
+    background-color: #f1b0b7;
+}
+
+/* ================= NEW LISTING FORM ================= */
+
+.form-card {
+    max-width: 540px;
+}
+
+.form-btn-group {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.form-btn-group .auth-btn {
+    flex: 1;
+}
+
+.cancel-btn {
+    flex: 1;
+    background-color: transparent;
+    color: #8b5e3c;
+    font-weight: 600;
+    border-radius: 30px;
+    padding: 0.65rem;
+    border: 1px solid #d8cfc8;
+    text-align: center;
+    text-decoration: none;
+}
+
+.cancel-btn:hover {
+    background-color: #f3ece6;
+    color: #6f4930;
+}
+.current-img-wrapper {
+    width: 100%;
+    max-height: 200px;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid #d8cfc8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3ece6;
+}
+
+.current-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    max-height: 200px;
+}
+@media (max-width: 768px) {
+    .listings-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+@media (max-width: 400px) {
+    .listings-grid {
+        gap: 0.7rem;
+    }   
+    .listing-img-wrapper {
+        height: 130px;  
+    }
+}
+@media (max-width: 480px) {
+    .brand-logo {
+        font-size: 1.5rem;
+    }
+    .search-form {
+        max-width: 150px;
+    }
+    .search-form input {
+        padding: 0.4rem 0.7rem;
+        font-size: 0.85rem;
+    }
+    .search-btn {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+
+/* ================= ERROR PAGE ================= */
+.error-wrapper {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-card {
+    background-color: #fffdfb;
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    text-align: center;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+.error-icon {
+    font-size: 3rem;
+    color: #e74c3c;
+    margin-bottom: 1rem;
+}
+
+.error-title {
+    font-family: "Dancing Script", cursive;
+    font-size: 2.5rem;
+    color: #7b4f3d;
+    margin-bottom: 0.5rem;
+}
+
+.error-msg {
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}

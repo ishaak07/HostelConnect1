@@ -1,12 +1,75 @@
-<h1>Edit Post</h1>
-<form action="/listings/<%= listing._id %>?_method=PUT" method="POST">
-    <label>Title</label>
-    <br>
-    <input type="text"name="listing[title]"value="<%= listing.title %>"required>
-    <br><br>
-    <label>Description</label>
-    <br>
-    <textarea name="listing[description]"rows="5"cols="40"><%= listing.description %></textarea>
-    <br><br>
-    <button>Update Post</button>
-</form>
+<% layout("/layouts/boilerplate") %>
+<div class="auth-wrapper">
+    <div class="auth-card form-card">
+
+        <div class="auth-header">
+            <h2 class="auth-title">Edit Listing</h2>
+            <p class="auth-subtitle">Update the details of your post</p>
+        </div>
+
+        <form action="/listings/<%= listing._id %>?_method=PUT" method="POST" class="auth-form needs-validation" enctype="multipart/form-data" novalidate>
+
+            <!-- Title -->
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-tag"></i></span>
+                    <input
+                        type="text"
+                        id="title"
+                        name="listing[title]"
+                        class="form-control"
+                        value="<%= listing.title %>"
+                        required
+                    >
+                    <div class="invalid-feedback">Please enter a title.</div>
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea
+                    id="description"
+                    name="listing[description]"
+                    class="form-control"
+                    rows="4"
+                ><%= listing.description %></textarea>
+            </div>
+
+            <!-- Current Image Preview -->
+            <% if(listing.image && listing.image.url) { %>
+            <div class="mb-3">
+                <label class="form-label">Current Image</label>
+                <div class="current-img-wrapper">
+                    <img src="<%= listing.image.url %>" alt="<%= listing.title %>" class="current-img">
+                </div>
+            </div>
+            <% } %>
+
+            <!-- New Image (optional) -->
+            <div class="mb-4">
+                <label for="image" class="form-label">Change Image (optional)</label>
+                <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    class="form-control"
+                    accept="image/*"
+                >
+            </div>
+
+            <!-- Buttons -->
+            <div class="form-btn-group">
+                <button type="submit" class="btn auth-btn">
+                    <i class="fa-solid fa-check"></i> Update
+                </button>
+                <a href="/listings/<%= listing._id %>" class="btn cancel-btn">
+                    Cancel
+                </a>
+            </div>
+
+        </form>
+
+    </div>
+</div>

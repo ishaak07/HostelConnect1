@@ -1,6 +1,66 @@
-<h1>Create New Post</h1>
-<form action="/listings" method="POST">
-    <input type="text" name="listing[title]" placeholder="title">
-    <textarea name="listing[description]" placeholder="description"></textarea>
-    <button>Create</button>
-</form>
+<% layout("/layouts/boilerplate") %>
+<div class="auth-wrapper">
+    <div class="auth-card form-card">
+
+        <div class="auth-header">
+            <h2 class="auth-title">Report an Item</h2>
+            <p class="auth-subtitle">Laundry mixup? Post it here!</p>
+        </div>
+
+        <form action="/listings" method="POST" class="auth-form needs-validation" enctype="multipart/form-data" novalidate>
+
+            <!-- Title -->
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-tag"></i></span>
+                    <input
+                        type="text"
+                        id="title"
+                        name="listing[title]"
+                        class="form-control"
+                        placeholder="e.g. Lost: Blue Hoodie/Found: Blue Denim"
+                        required
+                    >
+                    <div class="invalid-feedback">Please enter a title.</div>
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea
+                    id="description"
+                    name="listing[description]"
+                    class="form-control"
+                    rows="4"
+                    placeholder="Add details like color, brand, any identifying marks..."
+                ></textarea>
+            </div>
+
+            <!-- Image -->
+            <div class="mb-4">
+                <label for="image" class="form-label">Upload Image</label>
+                <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    class="form-control"
+                    accept="image/*"
+                >
+            </div>
+
+            <!-- Buttons -->
+            <div class="form-btn-group">
+                <button type="submit" class="btn auth-btn">
+                    <i class="fa-solid fa-paper-plane"></i> Post
+                </button>
+                <a href="/listings" class="btn cancel-btn">
+                    Cancel
+                </a>
+            </div>
+
+        </form>
+
+    </div>
+</div>

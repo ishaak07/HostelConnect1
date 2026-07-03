@@ -1,20 +1,60 @@
-<h1><%= listing.title %></h1>
-<p><%= listing.description %></p>
-<p>Hostel Block: <%= listing.hostelBlock %></p>
-<p>Posted On: <%= listing.createdAt %></p>
-<!-- <a href="/listings/<%= listing._id %>/edit">Edit</a>
-<form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
-    <button>Delete Post</button>
-</form> -->
+<% layout("/layouts/boilerplate") %>
+<div class="show-wrapper">
+    <a href="/listings" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to listings</a>
 
-<% if(currUser && listing.owner.equals(currUser._id)){ %>
+    <div class="show-card">
 
-    <a href="/listings/<%= listing._id %>/edit">
-        Edit
-    </a>
+        <div class="show-img-wrapper">
+            <% if(listing.image && listing.image.url) { %>
+                <img src="<%= listing.image.url %>" alt="<%= listing.title %>" class="show-img">
+            <% } else { %>
+                <div class="listing-img-placeholder show-img-placeholder">
+                    <i class="fa-solid fa-image"></i>
+                </div>
+            <% } %>
+        </div>
 
-    <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
-        <button>Delete</button>
-    </form>
+        <div class="show-content">
+            <h2 class="show-title"><%= listing.title %></h2>
 
-<% } %>
+            <% if(listing.description) { %>
+                <p class="show-description"><%= listing.description %></p>
+            <% } %>
+
+            <div class="show-meta">
+                <div class="meta-item">
+                    <i class="fa-solid fa-building"></i>
+                    <span><%= listing.hostelBlock %></span>
+                </div>
+                <% if(listing.owner) { %>
+                <div class="meta-item">
+                    <i class="fa-solid fa-door-open"></i>
+                    <span>Room <%= listing.owner.roomNo %></span>
+                </div>
+                <div class="meta-item">
+                    <i class="fa-solid fa-user"></i>
+                    <span><%= listing.owner.name %></span>
+                </div>
+                <% } %>
+                <div class="meta-item">
+                    <i class="fa-solid fa-clock"></i>
+                    <span>Posted <%= listing.createdAt.toDateString() %></span>
+                </div>
+            </div>
+
+            <% if(currUser && listing.owner && currUser._id.equals(listing.owner._id)) { %>
+            <div class="show-actions">
+                <a href="/listings/<%= listing._id %>/edit" class="btn edit-btn">
+                    <i class="fa-solid fa-pen"></i> Edit
+                </a>
+                <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST" class="d-inline">
+                    <button type="submit" class="btn delete-btn">
+                        <i class="fa-solid fa-trash"></i> Delete
+                    </button>
+                </form>
+            </div>
+            <% } %>
+        </div>
+
+    </div>
+</div>

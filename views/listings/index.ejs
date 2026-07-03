@@ -1,7 +1,44 @@
-<% for(let listing of allListings){ %>
-    <h3>
-        <a href="/listings/<%= listing._id %>"><%= listing.title %></a>
-    </h3>
-    <p><%= listing.description %></p>
-    <hr>
+<% layout("/layouts/boilerplate") %>
+<div class="listings-header">
+    <h2 class="page-title">Laundry Claim</h2>
+    <p class="page-subtitle">Items reported in your hostel block</p>
+</div>
+
+<% if(listings.length === 0) { %>
+    <div class="empty-state">
+        <i class="fa-solid fa-box-open"></i>
+        <% if(search) { %>
+            <p>No results found for "<%= search %>"</p>
+        <% } else { %>
+            <p>No items reported yet in your block.</p>
+        <% } %>
+        <a href="/listings/new" class="btn auth-btn">Report an Item</a>
+    </div>
+
+<% } else { %>
+    <div class="listings-grid">
+        <% listings.forEach(listing => { %>
+            <a href="/listings/<%= listing._id %>" class="listing-card-link">
+                <div class="listing-card">
+                    <div class="listing-img-wrapper">
+                        <% if(listing.image && listing.image.url) { %>
+                            <img src="<%= listing.image.url %>" alt="<%= listing.title %>" class="listing-img">
+                        <% } else { %>
+                            <div class="listing-img-placeholder">
+                                <i class="fa-solid fa-image"></i>
+                            </div>
+                        <% } %>
+                    </div>
+                    <div class="listing-card-body">
+                        <h5 class="listing-title"><%= listing.title %></h5>
+                    </div>
+                </div>
+            </a>
+        <% }) %>
+    </div>
 <% } %>
+
+<!-- Floating Add Button -->
+<a href="/listings/new" class="fab-add" title="Report an item">
+    <i class="fa-solid fa-plus"></i>
+</a>
