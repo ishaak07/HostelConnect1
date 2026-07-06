@@ -8,6 +8,8 @@ const methodOverride = require("method-override");
 const flash = require("connect-flash");
 const deleteExpiredListings = require("./utils/cleanup");
 const ejsMate = require("ejs-mate");
+const { isLoggedIn } = require("./middleware.js");
+const Listing = require("./models/listing.js");
 
 const app=express();
 const port=8080;
@@ -36,7 +38,7 @@ const sessionOptions = {
     resave: false,
     saveUninitialized: true,
     cookie: {
-        maxAge: 30 * 24 * 60 * 60 * 1000 
+        maxAge: 90 * 24 * 60 * 60 * 1000 
     }
 };
 
@@ -61,6 +63,10 @@ app.use((req, res, next) => {
 
 app.use("/users", userRoutes);
 app.use("/listings", listingRoutes);
+app.get("/profile", isLoggedIn, async (req, res) => {
+    const listings = await Listing.find({ owner: req.user._id });
+    res.render("users/profile.ejs", { listings });
+});
 
 app.get("/", (req, res) => {
   res.redirect("/listings");

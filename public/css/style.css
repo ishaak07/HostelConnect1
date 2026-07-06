@@ -772,3 +772,85 @@ main.container {
 .chatbot-input button:hover {
     background-color: #6f4930;
 }
+/* ================= PROFILE PAGE ================= */
+
+.profile-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.profile-card {
+    background-color: #fffdfb;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #f3ece6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #8b5e3c;
+    flex-shrink: 0;
+}
+
+.profile-name {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #1a1a1a;
+    margin-bottom: 0.8rem;
+}
+
+.profile-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.profile-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.88rem;
+    color: #5c4033;
+    background-color: #f3ece6;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+}
+
+.profile-detail-item i {
+    color: #8b5e3c;
+}
+
+.profile-posts .accordion-button:not(.collapsed) {
+    background-color: #f3ece6 !important;
+    color: #5c4033 !important;
+    box-shadow: none;
+}
+
+.profile-posts .accordion-button:focus {
+    box-shadow: none;
+}
+
+@media (max-width: 768px) {
+    .profile-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-details {
+        justify-content: center;
+    }
+}

@@ -40,6 +40,16 @@
                     <i class="fa-solid fa-clock"></i>
                     <span>Posted <%= listing.createdAt.toDateString() %></span>
                 </div>
+                <div class="meta-item">
+                    <i class="fa-solid fa-hourglass-half"></i>
+                    <span>
+                        <% 
+                            const now = new Date();
+                            const diff = Math.ceil((listing.expiresAt - now) / (1000 * 60 * 60 * 24));
+                        %>
+                        <%= diff > 0 ? `Expires in ${diff} day(s)` : "Expiring soon" %>
+                    </span>
+                </div>
             </div>
 
             <% if(currUser && listing.owner && currUser._id.equals(listing.owner._id)) { %>

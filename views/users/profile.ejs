@@ -1,0 +1,86 @@
+<% layout("/layouts/boilerplate") %>
+
+<a href="/listings" class="back-link">
+    <i class="fa-solid fa-arrow-left"></i> Back
+</a>
+
+<div class="profile-wrapper">
+
+    <!-- Profile Info Card -->
+    <div class="profile-card">
+        <div class="profile-avatar">
+            <i class="fa-solid fa-user"></i>
+        </div>
+        <div class="profile-info">
+            <h2 class="profile-name"><%= currUser.name %></h2>
+            <div class="profile-details">
+                <div class="profile-detail-item">
+                    <i class="fa-solid fa-id-card"></i>
+                    <span><%= currUser.registrationNo.toUpperCase() %></span>
+                </div>
+                <div class="profile-detail-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span><%= currUser.email %></span>
+                </div>
+                <div class="profile-detail-item">
+                    <i class="fa-solid fa-building"></i>
+                    <span><%= currUser.hostelBlock %></span>
+                </div>
+                <div class="profile-detail-item">
+                    <i class="fa-solid fa-door-open"></i>
+                    <span>Room <%= currUser.roomNo %></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- My Posts Accordion -->
+    <div class="profile-posts">
+        <div class="accordion" id="myPostsAccordion">
+            <div class="accordion-item" style="border-radius: 14px; border: none; box-shadow: 0 2px 10px rgba(0,0,0,0.06);">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#myPosts"
+                        style="border-radius: 14px; font-weight: 600; color: #5c4033; background-color: #fffdfb;">
+                        <i class="fa-solid fa-box-open me-2"></i>
+                        My Posts (<%= listings.length %>)
+                    </button>
+                </h2>
+                <div id="myPosts" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <% if(listings.length === 0) { %>
+                            <div class="empty-state" style="padding: 2rem 1rem;">
+                                <i class="fa-solid fa-box-open"></i>
+                                <p>No posts yet!</p>
+                                <a href="/listings/new" class="btn auth-btn">Create a Post</a>
+                            </div>
+                        <% } else { %>
+                            <div class="listings-grid">
+                                <% listings.forEach(listing => { %>
+                                    <a href="/listings/<%= listing._id %>" class="listing-card-link">
+                                        <div class="listing-card">
+                                            <div class="listing-img-wrapper">
+                                                <% if(listing.image && listing.image.url) { %>
+                                                    <img src="<%= listing.image.url %>" alt="<%= listing.title %>" class="listing-img">
+                                                <% } else { %>
+                                                    <div class="listing-img-placeholder">
+                                                        <i class="fa-solid fa-image"></i>
+                                                    </div>
+                                                <% } %>
+                                            </div>
+                                            <div class="listing-card-body">
+                                                <h5 class="listing-title"><%= listing.title %></h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                <% }) %>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
