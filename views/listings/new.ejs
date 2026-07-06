@@ -26,6 +26,7 @@
                 </div>
             </div>
 
+          
             <!-- Description -->
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
@@ -34,8 +35,11 @@
                     name="listing[description]"
                     class="form-control"
                     rows="4"
-                    placeholder="Add details like color, brand, any identifying marks..."
+                    placeholder="Add details or click Generate to auto-fill..."
                 ></textarea>
+                <button type="button" class="btn generate-btn mt-2" id="generateBtn">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Description
+                </button>
             </div>
 
             <!-- Image -->
@@ -64,3 +68,37 @@
 
     </div>
 </div>
+
+<script>
+document.getElementById("generateBtn").addEventListener("click", async function() {
+    const title = document.getElementById("title").value.trim();
+    
+    if(!title) {
+        alert("Enter the title first!");
+        return;
+    }
+    this.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating...';
+    this.disabled = true;
+    
+    try {
+        const response = await fetch("/listings/generate-description", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ title })
+        });
+        
+        const data = await response.json();
+        
+        if(data.description) {
+            document.getElementById("description").value = data.description;
+        }
+        
+    } catch(e) {
+        alert("Something went wrong, try again!");
+    }
+    
+    // Button reset
+    this.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> Generate Description';
+    this.disabled = false;
+});
+</script>

@@ -19,7 +19,6 @@ router.get("/:id", listingController.showListing);
 router.get("/:id/edit",isLoggedIn,isOwner, listingController.renderEditForm);
 router.put("/:id", isLoggedIn,isOwner,upload.single("image"),listingController.updateListing);
 router.delete("/:id", isLoggedIn,isOwner,listingController.deleteListing);
-
-//img
-
+// AI Description Generator
+router.post("/generate-description", isLoggedIn, listingController.generateDescription);
 module.exports = router;

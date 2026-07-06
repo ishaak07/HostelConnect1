@@ -634,3 +634,17 @@ main.container {
     margin-bottom: 1.5rem;
     font-size: 1rem;
 }
+.generate-btn {
+    background-color: #f3ece6;
+    color: #8b5e3c;
+    border: 1px solid #d8cfc8;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    padding: 0.4rem 1rem;
+}
+
+.generate-btn:hover {
+    background-color: #e8ddd6;
+    color: #6f4930;
+}

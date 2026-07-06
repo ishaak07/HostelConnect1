@@ -71,7 +71,8 @@
 //     res.redirect("/listings");
 // };
 
-
+const Groq = require("groq-sdk");
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 const Listing = require("../models/listing.js");
 const { cloudinary } = require("../cloudConfig");
 
@@ -199,5 +200,27 @@ module.exports.deleteListing = async (req, res) => {
     } catch (e) {
         req.flash("error", "Invalid listing ID!");
         res.redirect("/listings");
+    }
+};
+module.exports.generateDescription = async (req, res) => {
+    try {
+        const { title } = req.body;
+        
+        const completion = await groq.chat.completions.create({
+            messages: [
+                {
+                    role: "user",
+                    content: `Generate a very short 1-2 line description for a hostel laundry mixup post with title: "${title}". Just say what item it is and to collect/return it by contacting with room number as mentioned in the post (You don't have to randomly mention room number). Keep it under 30 words. No extra details.`
+                }
+            ],
+            model: "llama-3.3-70b-versatile",
+        });
+
+        const description = completion.choices[0]?.message?.content || "";
+        res.json({ description });
+
+    } catch (e) {
+        console.log(e);
+        res.status(500).json({ error: "Failed to generate description" });
     }
 };
