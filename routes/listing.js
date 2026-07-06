@@ -21,4 +21,5 @@ router.put("/:id", isLoggedIn,isOwner,upload.single("image"),listingController.u
 router.delete("/:id", isLoggedIn,isOwner,listingController.deleteListing);
 // AI Description Generator
 router.post("/generate-description", isLoggedIn, listingController.generateDescription);
+router.post("/chatbot", isLoggedIn, listingController.chatbot);
 module.exports = router;

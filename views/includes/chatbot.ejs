@@ -1,0 +1,74 @@
+<button class="chatbot-fab" id="chatbotBtn">
+    <i class="fa-solid fa-robot"></i>
+</button>
+<div class="chatbot-window" id="chatbotWindow">
+    <div class="chatbot-header">
+        <span><i class="fa-solid fa-robot"></i> Laundry Assistant</span>
+        <button class="chatbot-close" id="chatbotClose">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+    
+    <div class="chatbot-messages" id="chatbotMessages">
+        <div class="bot-msg">
+            Hi! 👋 Can't find your clothes? Tell me what's missing, and I'll help you look for it!
+        </div>
+    </div>
+    
+    <div class="chatbot-input">
+        <input type="text" id="chatInput" placeholder="Type here..." />
+        <button id="chatSend">
+            <i class="fa-solid fa-paper-plane"></i>
+        </button>
+    </div>
+</div>
+
+<script>
+    const chatbotBtn = document.getElementById("chatbotBtn");
+    const chatbotWindow = document.getElementById("chatbotWindow");
+    const chatbotClose = document.getElementById("chatbotClose");
+    const chatInput = document.getElementById("chatInput");
+    const chatSend = document.getElementById("chatSend");
+    const chatMessages = document.getElementById("chatbotMessages");
+
+    // Open/Close chatbot
+    chatbotBtn.addEventListener("click", () => {
+        chatbotWindow.classList.toggle("active");
+    });
+
+    chatbotClose.addEventListener("click", () => {
+        chatbotWindow.classList.remove("active");
+    });
+
+    // Send message
+    async function sendMessage() {
+        const message = chatInput.value.trim();
+        if (!message) return;
+        chatMessages.innerHTML += `<div class="user-msg">${message}</div>`;
+        chatInput.value = "";
+        chatMessages.innerHTML += `<div class="bot-msg loading-msg"><i class="fa-solid fa-spinner fa-spin"></i> Thinking...</div>`;
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        try {
+            const response = await fetch("/listings/chatbot", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message })
+            });
+
+            const data = await response.json();
+            document.querySelector(".loading-msg").remove();
+            chatMessages.innerHTML += `<div class="bot-msg">${data.reply}</div>`;
+
+        } catch(e) {
+            document.querySelector(".loading-msg").remove();
+            chatMessages.innerHTML += `<div class="bot-msg">Sorry, Something went wrong ! Try again.</div>`;
+        }
+
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    chatSend.addEventListener("click", sendMessage);
+    chatInput.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") sendMessage();
+    });
+</script>

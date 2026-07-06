@@ -224,3 +224,40 @@ module.exports.generateDescription = async (req, res) => {
         res.status(500).json({ error: "Failed to generate description" });
     }
 };
+module.exports.chatbot = async (req, res) => {
+    try {
+        const { message } = req.body;
+        const listings = await Listing.find({
+            hostelBlock: req.user.hostelBlock
+        }).populate("owner");
+        const listingsContext = listings.map(l => 
+            `Title: ${l.title}, Description: ${l.description || "No description"}, Posted by: ${l.owner?.name || "Unknown"}, Room: ${l.owner?.roomNo || "Unknown"}, Posted on: ${l.createdAt.toDateString()}`
+        ).join("\n");
+
+        const completion = await groq.chat.completions.create({
+            messages: [
+                {
+                    role: "system",
+                    content: `You are a helpful assistant for a hostel laundry mixup app. You help students find their lost laundry items. 
+                    
+Current listings in the student's hostel block:
+${listingsContext || "No listings currently"}
+
+Help the student find their item. If a matching item exists, tell them who posted it and their room number. Keep responses short and friendly. Reply in the same language the user writes in (Hindi or English).`
+                },
+                {
+                    role: "user",
+                    content: message
+                }
+            ],
+            model: process.env.GROQ_MODEL || "llama-3.3-70b-versatile",
+        });
+
+        const reply = completion.choices[0]?.message?.content || "Sorry, Something went wrong!";
+        res.json({ reply });
+
+    } catch(e) {
+        console.log(e);
+        res.status(500).json({ error: "Chatbot error!" });
+    }
+};
