@@ -41,6 +41,9 @@ const sessionOptions = {
         maxAge: 90 * 24 * 60 * 60 * 1000 
     }
 };
+app.get("/health", (req, res) => {
+    res.status(200).send("OK");
+});
 
 app.use(session(sessionOptions));
 app.use(passport.initialize());
@@ -61,6 +64,7 @@ app.use((req, res, next) => {
     next();
 });
 
+
 app.use("/users", userRoutes);
 app.use("/listings", listingRoutes);
 app.get("/profile", isLoggedIn, async (req, res) => {
@@ -68,9 +72,6 @@ app.get("/profile", isLoggedIn, async (req, res) => {
     res.render("users/profile.ejs", { listings });
 });
 
-app.get("/health", (req, res) => {
-    res.status(200).send("OK");
-});
 
 app.get("/", (req, res) => {
     res.redirect("/listings");
